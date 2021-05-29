@@ -13,10 +13,14 @@ end
   Quando('confirmo o cadastro') do
     @app.cadastropage.confirmar_cadastro
 end
+
+Dado('preencho os campos do formulário com dados válidos aleatórios') do
+  @app.cadastropage.preencher_form_com_dados_aleatorios
+end
   
   Então('devo ser direcionada a página de minha conta') do
     expect(@app.minhacontapage.page_title.text).to eq ('MY ACCOUNT')
-    expect(@app.minhacontapage.account_name.text).to eq ('Gabriela Mendes')
+    expect(@app.minhacontapage.account_name.text).to eq (@app.cadastropage.account_full_name)
     
     #expect(@app.minhacontapage.acessou_minha_conta).to be_truthy
 end
